@@ -1,0 +1,82 @@
+<div id="Personnel">
+  <h1>Personnels</h1>
+
+  <div class="divider"></div>
+
+  <div class="container contentSelect">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="hotelSelect">clinique</label>
+      </div>
+      <select class="custom-select" id="hotelSelect" >
+        <option *ngFor="let noclinque of NoCliniques">{{ noclinque.valueOf() }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table
+    id="ht"
+    align="center"
+    border="1"
+    width="1000"
+    class="table-striped table-hover"
+  >
+    <thead class="Personnelsheader">
+      <th class="contentCell">No Clinique</th>
+      <th class="contentCell">No Personel</th>
+      <th class="contentCell">NOM</th>
+      <th class="contentCell">ADRESSE</th>
+      <th class="contentCell">NUMERO TELEPHONE</th>
+      <th class="contentCell">DATE DE NAISSANCE</th>
+      <th class="contentCell">NAS</th>
+      <th class="contentCell">SEXE</th>
+      <th class="contentCell">SALAIRE</th>
+      <th class="contentCell">FONCTION</th>
+      <th class="actionCell">ACTION</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let personel of personels; let i = index">
+        <td class="contentCell">{{ personel.Noclinique }}</td>
+        <td class="contentCell">{{ personel.NoPersonnel }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeName($event, i)">{{ personel.nom }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeAdresse($event, i)">{{ personel.adresse }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeTelephone($event, i)">{{ personel.NumTelephone }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeDateDeNaissance($event, i)">{{ personel.DateNaissance.substring(0,10) }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeNAS($event, i)">{{ personel.NAS }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeSexe($event, i)">{{ personel.sex }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeSalary($event, i)">{{ personel.salaire }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeFonction($event, i)">{{ personel.fonction }}</td>
+        <td class="actionCell">
+          <button type="button" class="submitbtn" (click)="updatePersonnel(i)"> <i class="fa fa-edit"></i></button>
+          <button type="button" class="deletebtn" (click)="deletePersonnel(personel.Noclinique, personel.NoPersonnel)">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </td>
+      </tr>
+
+      <tr class="blank_row">
+        <td class="contentCell">{{selectedClinique}}</td>
+        <td class="contentCell" contenteditable="true" placeholder="New Number" #NoPersonel></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Type" #nom></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Price" #adresse></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Price" #telephone></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Price" #dateNaissance></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Price" #NAS></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Price" #sexe></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Price" #salaire></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Price" #fonction></td>
+        <td class="contentCell"></td>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="hotelSelect">inserer dans</label>
+          </div>
+          <select class="custom-select" id="hotelSelect" (change)="updateSelectedClinique($event.target.options.selectedIndex)">
+            <option *ngFor="let noclinique of NoCliniques" >{{ noclinique }}</option>
+          </select></div>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn" (click)="insertPersonnel()">+</button>
+</div>

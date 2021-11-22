@@ -1,0 +1,125 @@
+
+<div id="guest">
+<div class="container contentSelect">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="hotelSelect">No Animal</label>
+    </div>
+    <select
+      class="custom-select"
+      id="hotelSelect"
+      (change)="updateSelectedAnimal($event.target.options.selectedIndex)"
+    >
+    <option *ngFor="let keys of animalPks">{{ keys.NoAnimal }}</option>
+    </select>
+
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="hotelSelect">No clinqiue</label>
+    </div>
+    <select
+      class="custom-select"
+      id="hotelSelect"
+      (change)="updateSelectedClinique($event.target.options.selectedIndex)">
+    <option *ngFor="let keys of cliniquePks">{{ keys.Noclinique }}</option>
+    </select>
+  </div>
+</div>
+
+<h5 >Les informations de l'animal</h5>
+<div class="divider"></div>
+<table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+  <thead class="header">
+    <th class="contentCell">No Animal</th>
+      <th class="contentCell">NOM</th>
+      <th class="contentCell">espèce</th>
+      <th class="contentCell">race</th>
+      <th class="contentCell">DATE DE NAISSANCE</th>
+      <th class="contentCell">DATE D'INSCRIPTION</th>
+      <th class="contentCell">taille</th>
+      <th class="contentCell">poids</th>
+      <th class="contentCell">etat</th>
+      <th class="contentCell">description</th>
+  </thead>
+  <tbody *ngIf="anim">
+    <tr >
+      <td class="contentCell">{{ animal.noanimal}}</td>
+      <td class="contentCell">{{ animal.nom }}</td>
+      <td class="contentCell">{{ animal.espece }}</td>
+      <td class="contentCell">{{ animal.type}}</td>
+      <td class="contentCell">{{ animal.datedenaissance.substring(0,10) }}</td>
+      <td class="contentCell">{{ animal.dateinscription.substring(0,10) }}</td>
+      <td class="contentCell">{{ animal.taille }}</td>
+      <td class="contentCell">{{ animal.poids }}</td>
+      <td class="contentCell">{{ animal.etat }}</td>
+      <td class="contentCell">{{ animal.description }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 >les informations de l'examen</h5>
+<div class="divider"></div>
+<table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+  <thead class="header">
+    <th class="contentCell">NUMERO EXAMEN</th>
+      <th class="contentCell">NUMERO PERSONNEL</th>
+      <th class="contentCell">DATE EXAMEN</th>
+      <th class="contentCell">HEURE EXAMEN</th>
+      <th class="contentCell">DESCRIPTION</th>
+  </thead>
+  <tbody *ngIf="examen">
+    <tr >
+      <td class="contentCell">{{ examen.noexamen}}</td>
+      <td class="contentCell">{{ examen.nopersonnel }}</td>
+      <td class="contentCell">{{ examen.dateexamen.substring(0,10) }}</td>
+      <td class="contentCell">{{ examen.heure }}</td>
+      <td class="contentCell">{{ examen.description }}</td>
+    </tr>
+  </tbody>
+</table>
+
+  <h3 >Listes des traitement</h3>
+  <div class="divider"></div>
+  <table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+    <thead class="header">
+      <th class="contentCell">NUMERO EXAMEN</th>
+      <th class="contentCell">NUMERO TRAITEMENT</th>
+      <th class="contentCell">NUMERO ANIMAL</th>
+      <th class="contentCell">DATE EXAMEN</th>
+      <th class="contentCell">DATE DEBUT</th>
+      <th class="contentCell">DATE FIN</th>
+      <th class="contentCell">QUANTITE DU TRAITEMENT</th>
+    </thead>
+    <tbody *ngIf="prescriptionInstantiated">
+      <tr *ngFor="let traitement of traitements">
+        <td class="contentCell">{{ traitement.NoExamen}}</td>
+        <td class="contentCell">{{ traitement.NoTraitement }}</td>
+        <td class="contentCell">{{ traitement.NoAnimal }}</td>
+        <td class="contentCell">{{ traitement.dateExamen.substring(0,10) }}</td>
+        <td class="contentCell">{{ traitement.dateDebut.substring(0,10) }}</td>
+        <td class="contentCell">{{ traitement.dateFin.substring(0,10) }}</td>
+        <td class="contentCell">{{ traitement.quantiteTraitement }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h5 >La facture</h5>
+<div class="divider"></div>
+<table *ngIf="examen" id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+  <thead class="header">
+    <th class="contentCell">NUMERO FACTURE</th>
+      <th class="contentCell">DATE</th>
+      <th class="contentCell">TOTAL</th>
+      <th class="contentCell">MOYEN DE PAYEMENT</th>
+      <th class="contentCell">ETAT</th>
+  </thead>
+  <tbody>
+    <tr >
+      <td class="contentCell">{{ facture.noFacture}}</td>
+      <td class="contentCell">{{ facture.date }}</td>
+      <td class="contentCell">{{ total}}</td>
+      <td class="contentCell">{{ facture.moyenDePayement }}</td>
+      <td class="contentCell">{{ facture.etat }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

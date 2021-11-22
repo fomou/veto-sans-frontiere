@@ -1,0 +1,33 @@
+version: "3.2"
+
+#service
+services:
+  veto-sans-frontiere:
+    image: "postgres:9.6-alpine"
+    container_name: database
+    volumes:
+      - "vsf-data:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=vetosansfrontieresdatabase
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+
+#server app
+
+  server:
+    build: ./server
+    container_name: server
+    environment:
+        - DB_SERVER=veto-sans-frontiere
+        - POSTGRES_DB=vetosansfrontieresdatabase
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=12345
+    ports: 
+      - 3000:300
+    links:
+      - veto-sans-frontiere
+volumes:
+  vsf-data:
+          

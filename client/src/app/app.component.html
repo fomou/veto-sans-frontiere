@@ -1,0 +1,24 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand title" href="/">INF3710 - TP5</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" routerLink="/cliniques">Cliniques</a>
+      <a class="nav-item nav-link active" routerLink="/personnels">Personnels</a>
+      <a class="nav-item nav-link active" routerLinkActive="is-active" routerLink="/pets">Les animaux Inscrits</a>
+      <a class="nav-item nav-link active" routerLinkActive="is-active" routerLink="/traitements">Traitement</a>
+      <a class="nav-item nav-link active" routerLinkActive="is-active" routerLink="/facture">Facture</a>
+    </div>
+  </div>
+</nav>
+
+<div class="home" *ngIf="route == ''">
+  <img src="../assets/image.jpg" width="50" height="50">
+
+  <p>
+    Bienvenu<br />sur la page des cliniques de<br /><span class="Clinique1">Veto</span
+    ><span class="Clinique2">Sans</span><span class="Clinique3">Frontière</span>
+  </p>
+  <button type="button" class="btn" routerLink="/cliniques">Acceder à la page des cliniques &#10140;</button>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,39 @@
+<div id="clinique">
+  <h1>Cliniques</h1>
+
+  <div class="divider"></div>
+
+  <table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+    <thead class="header">
+      <th class="contentCell">NUMERO CLINIQUE</th>
+      <th class="contentCell">ADRESSE</th>
+      <th class="contentCell">NUMERO DE TELEPHONE</th>
+      <th class="actionCell">NUMERO DE TELECOPIE</th>
+      <th class="actionCell">ACTION</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let clinique of cliniques; let i = index">
+        <td class="contentCell">{{ clinique.Noclinique }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeCliniqueName($event, i)">{{ clinique.adresse}}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeCliniqueCity($event, i)">{{ clinique.NumTelephone }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeNumTelecope($event, i)">{{ clinique.NumTelecopie }}</td>
+        <td class="actionCell">
+          <button type="button" class="submitbtn" (click)="updateClinique(i)"><i class="fa fa-edit"></i></button>
+          <button type="button" class="deletebtn" (click)="deleteClinique(clinique.Noclinique)"><i class="fa fa-trash-o"></i></button>
+        </td>
+      </tr>
+
+      <tr class="blank_row">
+        <td class="contentCell" contenteditable="true" placeholder="nouveau numero" #Noclinique></td>
+        <td class="contentCell" contenteditable="true" placeholder="nouvelle adresse" #adresse></td>
+        <td class="contentCell" contenteditable="true" placeholder="nouveau telephone" #Numtelephone></td>
+        <td class="contentCell" contenteditable="true" placeholder="nouveau telecopie" #Numtelecopie></td>
+        <td class="contentCell"></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  <button type="button" class="btn" (click)="insertClinique()">+</button>
+
+</div>

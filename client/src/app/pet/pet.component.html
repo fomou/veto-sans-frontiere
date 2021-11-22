@@ -1,0 +1,95 @@
+<div id="animaux">
+  <h1>Les animaux inscrits</h1>
+
+  <div class="divider"></div>
+
+  <div class="container contentSelect">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="searchName">chercher par nom</label>
+      </div>
+      <input type="text" id="searchName" #nameToSearch>
+        <button ><i class="fa fa-search" (click)="searchByName()"></i></button>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="cliniqueSlect">clinique</label>
+      </div>
+      <select class="custom-select" id="cliniqueSlect"
+      (change)="updateSelectedClinique($event.target.options.selectedIndex)">
+        <option *ngFor="let noclinque of cliniqueKeys">{{ noclinque }}</option>
+      </select>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="proprietaireSlect"> Proprietaire</label>
+      </div>
+      <select class="custom-select" id="proprietaireSlect"
+        (change)="updateSelectedOwner($event.target.options.selectedIndex)"
+      >
+        <option *ngFor="let noproprietaire of proprietaire">{{ noproprietaire }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table
+    id="ht"
+    align="center"
+    border="1"
+    width="1000"
+    class="table-striped table-hover"
+  >
+    <thead class="Personnelsheader">
+      <th class="contentCell">No Animal</th>
+      <th class="contentCell">NOM</th>
+      <th class="contentCell">espèce</th>
+      <th class="contentCell">race</th>
+      <th class="contentCell">DATE DE NAISSANCE</th>
+      <th class="contentCell">DATE D'INSCRIPTION</th>
+      <th class="contentCell">taille</th>
+      <th class="contentCell">poids</th>
+      <th class="contentCell">etat</th>
+      <th class="contentCell">description</th>
+      <th class="actionCell">ACTION</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let animal of animals; let i = index">
+        <td class="contentCell">{{ animal.noanimal }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeName($event,i)" >{{ animal.nom }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeEspece($event,i)">{{ animal.espece }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeType($event,i)">{{ animal.type }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeDateNaissance($event,i)" >{{ animal.datedenaissance.substring(0,10) }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeDateInscription($event,i)">{{ animal.dateinscription.substring(0,10) }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeTaille($event,i)">{{ animal.taille }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changePoids($event,i)">{{ animal.poids }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeEtat($event,i)">{{ animal.etat }}</td>
+        <td class="contentCell" contenteditable="true" (blur)="changeDescription($event,i)">{{ animal.description }}</td>
+        <td class="actionCell">
+          <button type="button" class="submitbtn" (click)="updateAnimals(i)"> <i class="fa fa-edit"></i></button>
+          <button type="button" class="deletebtn" (click)="deleteAnimal(animal.noanimal,animal.noclinique,animal.noproprietaire)">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </td>
+      </tr>
+
+      <tr class="blank_row">
+        <td class="contentCell" contenteditable="true" placeholder="New Animal" #Animal></td>
+        <td class="contentCell" contenteditable="true" placeholder="New nom" #nom></td>
+        <td class="contentCell" contenteditable="true" placeholder="New espece" #espece></td>
+        <td class="contentCell" contenteditable="true" placeholder="New type" #type></td>
+        <td class="contentCell" contenteditable="true" placeholder="New date Naissance" #dateNaissance></td>
+        <td class="contentCell" contenteditable="true" placeholder="New Date Inscription" #DateInscription></td>
+        <td class="contentCell" contenteditable="true" placeholder="New taille" #taille></td>
+        <td class="contentCell" contenteditable="true" placeholder="New poids" #poids></td>
+        <td class="contentCell" contenteditable="true" placeholder="New etat" #etat></td>
+        <td class="contentCell" contenteditable="true" placeholder="New description" #description></td>
+        <td class="contentCell"></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn" (click)="insertAnimal()" >+</button>
+</div>
+

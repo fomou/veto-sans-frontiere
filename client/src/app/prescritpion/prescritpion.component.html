@@ -1,0 +1,44 @@
+<div id="guest">
+  <h1>Traitements</h1>
+
+  <div class="divider"></div>
+
+  <div class="container contentSelect">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="hotelSelect">No Animal</label>
+      </div>
+      <select
+        class="custom-select"
+        id="hotelSelect"
+        (change)="updateSelectedAnimal($event.target.options.selectedIndex)"
+      >
+        <option *ngFor="let animal of animalPks">{{ animal }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+    <thead class="header">
+      <th class="contentCell">NUMERO EXAMEN</th>
+      <th class="contentCell">NUMERO TRAITEMENT</th>
+      <th class="contentCell">NUMERO ANIMAL</th>
+      <th class="contentCell">DATE EXAMEN</th>
+      <th class="contentCell">DATE DEBUT</th>
+      <th class="contentCell">DATE FIN</th>
+      <th class="contentCell">QUANTITE DU TRAITEMENT</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let traitement of traitements">
+        <td class="contentCell">{{ traitement.NoExamen}}</td>
+        <td class="contentCell">{{ traitement.NoTraitement }}</td>
+        <td class="contentCell">{{ traitement.NoAnimal }}</td>
+        <td class="contentCell">{{ traitement.dateExamen.substring(0,10) }}</td>
+        <td class="contentCell">{{ traitement.dateDebut.substring(0,10) }}</td>
+        <td class="contentCell">{{ traitement.dateFin.substring(0,10)}}</td>
+        <td class="contentCell">{{ traitement.quantiteTraitement }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
